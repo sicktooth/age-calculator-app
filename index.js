@@ -12,7 +12,7 @@ function results() {
     var thisYear = today.getFullYear();
     var thisMonth = today.getMonth;
     var thisDay = today.getDate;
-    // document.querySelectorAll("span")[0].textContent = thisYear;
+    document.querySelectorAll("span")[1].textContent = thisMonth;
     if (day == thisDay) {
         console.log("Day checked out");
     } else {
