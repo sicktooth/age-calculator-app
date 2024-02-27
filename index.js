@@ -1,7 +1,7 @@
 var submit = document.querySelector(".submit");
-var day = document.getElementById('day');
-var month = document.getElementById('month');
-var year = document.getElementById('year');
+var day = document.getElementById("day").value;
+var month = document.getElementById("month").value;
+var year = document.getElementById("year").value;
 
 submit.addEventListener("click", results);
 function results() {
@@ -10,23 +10,24 @@ function results() {
     // }
     var today = new Date();
     var thisYear = today.getFullYear();
-    var thisMonth = today.getMonth;
-    var thisDay = today.getDate;
-    document.querySelectorAll("span")[1].textContent = thisMonth;
+    var thisMonth = today.getMonth();
+    var thisDay = today.getDate();
+    document.querySelectorAll("span")[1].textContent = thisDay;
+    console.log(thisMonth);
     if (day == thisDay) {
-        console.log("Day checked out");
+        if (month == thisMonth) {
+            if (year == thisYear) {
+            console.log("Year,month and day checked out");
+            } else {
+                console.log("Year not checked out");
+            }
+        } else {
+        console.log("Month not checked out");
+        }
     } else {
         console.log("Day not checked out");
     }
-    if (month == thisMonth) {
-        console.log("Month checked out");
-    } else {
-        console.log("Month not checked out");
-    }
-    if (year == thisYear) {
-        console.log("Year checked out");
-    } else {
-        console.log("Year not checked out");
-    }
+    
+    
 
 }
