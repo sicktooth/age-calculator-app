@@ -1,33 +1,34 @@
-var submit = document.querySelector(".submit");
-var day = document.getElementById("day").value;
-var month = document.getElementById("month").value;
-var year = document.getElementById("year").value;
+var form = document.querySelector("#form");
 
-submit.addEventListener("click", results);
-function results() {
-    // for (var i = 0; i < 3; i++) {
-    //   document.querySelectorAll("span")[i].textContent = "Fuck!";
-    // }
-    var today = new Date();
-    var thisYear = today.getFullYear();
-    var thisMonth = today.getMonth();
-    var thisDay = today.getDate();
-    document.querySelectorAll("span")[1].textContent = thisDay;
-    console.log(thisMonth);
-    if (day == thisDay) {
-        if (month == thisMonth) {
-            if (year == thisYear) {
-            console.log("Year,month and day checked out");
-            } else {
-                console.log("Year not checked out");
-            }
-        } else {
-        console.log("Month not checked out");
+function results(e) {
+    const day = document.getElementById("day").value,
+    month = document.getElementById("month").value,
+    year = document.getElementById("year").value,
+    today = new Date(), // gets current date
+    thisYear = today.getFullYear(), // gets current year
+    thisMonth = today.getMonth() + 1, // gets current month
+    thisDay = today.getDate(); // gets current day
+   
+    e.preventDefault(); // prevents auto submission i.e ? in the url
+
+     // The logic here
+
+    var resultYear = thisYear - year;
+    if (month == thisMonth) {
+        document.querySelector(".monthResult").outerHTML = 0;
+        if (day == thisDay) { 
+            var resultDay = thisDay - day;
+            document.querySelector(".daysResult").innerHTML = resultDay;
         }
     } else {
-        console.log("Day not checked out");
+        console.log("Month not checked out");
     }
+    document.querySelector(".yearResult").innerHTML = resultYear;
+
+    
     
     
 
 }
+
+form.addEventListener("submit", results);
