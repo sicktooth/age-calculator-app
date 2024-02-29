@@ -14,18 +14,33 @@ function results(e) {
      // The logic here
 
     var resultYear = thisYear - year;
-    if (month == thisMonth) {
+    if (month == thisMonth && day == thisDay) {
         document.querySelector(".monthResult").outerHTML = 0;
-        if (day == thisDay) { 
-            var resultDay = thisDay - day;
-            document.querySelector(".daysResult").innerHTML = resultDay;
-        }
+        var resultDay = thisDay - day;
+        document.querySelector(".daysResult").outerHTML = resultDay;
     } else {
-        console.log("Month not checked out");
+        console.error("Month not checked out");
     }
-    document.querySelector(".yearResult").innerHTML = resultYear;
+    document.querySelector(".yearResult").outerHTML = resultYear;
 
-    
+    if (thisYear == year) {
+        resultYear = 0;
+        document.querySelector(".yearResult").outerHTML = resultYear;
+        if (month == thisMonth) {
+            document.querySelector(".monthResult").outerHTML = 0;
+            if (day > thisDay) {
+                document.querySelector(".dayResult").outerHTML = 0;
+            } 
+            else if (day < thisDay) {
+                document.querySelector(".dayResult").outerHTML = thisDay-day;
+            } else {
+                document.querySelector(".dayResult").outerHTML = 0;
+            }
+        } else if (month < thisMonth) {
+           var beforeRMonth = thisMonth - month;
+           
+        }
+    }
     
     
 
