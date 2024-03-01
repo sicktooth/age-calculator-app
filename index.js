@@ -36,9 +36,28 @@ function results(e) {
             } else {
                 document.querySelector(".dayResult").outerHTML = 0;
             }
-        } else if (month < thisMonth) {
-           var beforeRMonth = thisMonth - month;
-           
+        } 
+        else if (month < thisMonth) {
+           var beforeRMonth = thisMonth - month,
+                totalDays = new Date(year, month, 0).getDate();
+           if (day > thisDay) {
+                var beforeRDay = totalDays - day;
+                document.querySelector(".dayResult").outerHTML = beforeRDay + thisDay;
+                document.querySelector(".monthResult").outerHTML = beforeRMonth - 1;
+           }
+           else if (day < thisDay) {
+                var beforeRDay0 = beforeRDay + thisDay;
+                if (beforeRDay0 >= 30) {
+                    document.querySelector(".daysResult").outerHTML = beforeRDay0 - 30;
+                    document.querySelector(".monthsResult").outerHTML = beforeRMonth + 1;
+                } else {
+                    document.querySelector(".monthsResult").outerHTML = beforeRMonth;
+                    document.querySelector(".daysResult").outerHTML = beforeRDay0;
+                }
+           } else {
+            document.querySelector(".monthsResult").outerHTML = beforeRMonth;
+            document.querySelector(".daysResult").outerHTML = 0;
+           }
         }
     }
     
