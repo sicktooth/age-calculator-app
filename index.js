@@ -18,23 +18,21 @@ function results(e) {
         document.querySelector(".monthResult").outerHTML = 0;
         var resultDay = thisDay - day;
         document.querySelector(".daysResult").outerHTML = resultDay;
-    } else {
-        console.error("Month not checked out");
+        document.querySelector(".yearResult").outerHTML = resultYear;
     }
-    document.querySelector(".yearResult").outerHTML = resultYear;
 
-    if (thisYear == year) {
+    else if (thisYear == year) {
         resultYear = 0;
         document.querySelector(".yearResult").outerHTML = resultYear;
         if (month == thisMonth) {
             document.querySelector(".monthResult").outerHTML = 0;
             if (day > thisDay) {
-                document.querySelector(".dayResult").outerHTML = 0;
+                document.querySelector(".daysResult").outerHTML = 0;
             } 
             else if (day < thisDay) {
-                document.querySelector(".dayResult").outerHTML = thisDay-day;
+                document.querySelector(".daysResult").outerHTML = thisDay-day;
             } else {
-                document.querySelector(".dayResult").outerHTML = 0;
+                document.querySelector(".daysResult").outerHTML = 0;
             }
         } 
         else if (month < thisMonth) {
@@ -42,7 +40,7 @@ function results(e) {
                 totalDays = new Date(year, month, 0).getDate();
            if (day > thisDay) {
                 var beforeRDay = totalDays - day;
-                document.querySelector(".dayResult").outerHTML = beforeRDay + thisDay;
+                document.querySelector(".daysResult").outerHTML = beforeRDay + thisDay;
                 document.querySelector(".monthResult").outerHTML = beforeRMonth - 1;
            }
            else if (day < thisDay) {
