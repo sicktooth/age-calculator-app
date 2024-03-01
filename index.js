@@ -14,9 +14,9 @@ function results(e) {
      // The logic here
 
     var resultYear = thisYear - year;
-    if (month == thisMonth && day == thisDay) {
+    var resultDay = thisDay - day;
+    if (month == thisMonth && day == thisDay && year < thisYear) {
         document.querySelector(".monthResult").outerHTML = 0;
-        var resultDay = thisDay - day;
         document.querySelector(".daysResult").outerHTML = resultDay;
         document.querySelector(".yearResult").outerHTML = resultYear;
     }
@@ -59,7 +59,9 @@ function results(e) {
         }
     }
     
-    
+    else if (year < thisYear) {
+
+    }
 
 }
 
