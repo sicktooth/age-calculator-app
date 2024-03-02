@@ -15,42 +15,27 @@ function results(e) {
      // The logic here
 
     var resultYear = thisYear - year,
-        resultDay = thisDay - day,
-        totalDays = new Date(year, month, 0).getDate(),
-        totalMonths = 12,
-        totalDaysPM = new Date(year, (month - 1), 0).getDate(), // gets total days in previous month
-
-            // displays results
-
-        yearText = document.querySelector(".yearResult").outerHTML,
-        monthText = document.querySelector(".monthResult").outerHTML,
-        dayText = document.querySelector(".daysResult").outerHTML; 
-
-    // if (month == thisMonth && day == thisDay && year < thisYear) {
-    //     if (day > totalDays) {
-    //         alert('Please select a day in the month'); // returns error message
-    //     }
-    //     monthText = "0";
-    //     dayText = "0";
-    //     yearText = resultYear;
-    // }
+    resultDay = thisDay - day,
+    totalDays = new Date(year, month, 0).getDate(),
+    totalMonths = 12,
+    totalDaysPM = new Date(year, (month - 1), 0).getDate(); // gets total days in previous month
 
     if (thisYear == year) {
         // let resultYear = 0;
         if (month == thisMonth) {
-            monthText = "0";
+            document.querySelector(".monthResult").outerHTML = "0";
             if (day > totalDays) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                dayText = 0; // Replace with error message
+                document.querySelector(".daysResult").outerHTML = 0; // Replace with error message
             } 
             else if (day < thisDay) {
-                dayText = resultDay;
-                yearText = "0";
+                document.querySelector(".daysResult").outerHTML = resultDay;
+                document.querySelector(".yearResult").outerHTML = "0";
             } else {
-                dayText = "0";
-                yearText = "0";
+                document.querySelector(".daysResult").outerHTML = "0";
+                document.querySelector(".yearResult").outerHTML = "0";
             }
         }
         else if (month < thisMonth) {
@@ -60,26 +45,26 @@ function results(e) {
             }
            else if (day > thisDay) {
                 var beforeRDay = totalDaysPM - day;
-                dayText = beforeRDay + thisDay;
-                monthText = resultMonth - 1;
-                yearText = "0";
+                document.querySelector(".daysResult").outerHTML = beforeRDay + thisDay;
+                document.querySelector(".monthResult").outerHTML = resultMonth - 1;
+                document.querySelector(".yearResult").outerHTML = "0";
            }
            else if (day < thisDay) {
                 var beforeRDay0 = beforeRDay + thisDay;
                 if (beforeRDay0 >= 30) {
-                    dayText = beforeRDay0 - 30;
-                    monthText = resultMonth + 1;
-                    yearText = "0";
+                    document.querySelector(".daysResult").outerHTML = beforeRDay0 - 30;
+                    document.querySelector(".monthResult").outerHTML = resultMonth + 1;
+                    document.querySelector(".yearResult").outerHTML = "0";
                 } else {
-                    monthText = resultMonth;
-                    dayText = beforeRDay0;
-                    yearText = "0";
+                    document.querySelector(".monthResult").outerHTML = resultMonth;
+                    document.querySelector(".daysResult").outerHTML = beforeRDay0;
+                    document.querySelector(".yearResult").outerHTML = "0";
                 }
            }
            else {
-                yearText = "0";
-                monthText = resultMonth;
-                dayText = "0";
+                document.querySelector(".yearResult").outerHTML = "0";
+                document.querySelector(".monthResult").outerHTML = resultMonth;
+                document.querySelector(".daysResult").outerHTML = "0";
            }
         }
         else if (month > thisMonth) {
@@ -99,18 +84,18 @@ function results(e) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                yearText = resultYear - 1;
-                monthText = totalMonths - 1;
-                dayText = day - thisDay;
+                document.querySelector(".yearResult").outerHTML = resultYear - 1;
+                document.querySelector(".monthResult").outerHTML = totalMonths - 1;
+                document.querySelector(".daysResult").outerHTML = day - thisDay;
             } 
             else if (day < thisDay) {
-                yearText = resultYear;
-                monthText = "0";
-                dayText = resultDay;
+                document.querySelector(".yearResult").outerHTML = resultYear;
+                document.querySelector(".monthResult").outerHTML = "0";
+                document.querySelector(".daysResult").outerHTML = resultDay;
             } else {
-                yearText = resultYear;
-                monthText = "0";
-                dayText = "0";
+                document.querySelector(".yearResult").outerHTML = resultYear;
+                document.querySelector(".monthResult").outerHTML = "0";
+                document.querySelector(".daysResult").outerHTML = "0";
             }
         }
         else if (month < thisMonth) {
@@ -118,9 +103,9 @@ function results(e) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                yearText = resultYear;
-                monthText = resultMonth - 1;
-                dayText = beforeRDay;
+                document.querySelector(".yearResult").outerHTML = resultYear;
+                document.querySelector(".monthResult").outerHTML = resultMonth - 1;
+                document.querySelector(".daysResult").outerHTML = beforeRDay;
             }
         }
     }
