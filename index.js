@@ -19,8 +19,7 @@ function results(e) {
     resultDay = thisDay - day,
     totalDays = new Date(year, month, 0).getDate(),
     totalMonths = 12,
-    totalDaysPM = new Date(year, (month - 1), 0).getDate(), // gets total days in previous month
-    beforeRDay = totalDaysPM - day;
+    totalDaysPM = new Date(year, (month - 1), 0).getDate(); // gets total days in previous month
 
     if (thisYear == year) {
         // let resultYear = 0;
