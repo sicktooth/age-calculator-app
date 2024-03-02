@@ -1,4 +1,4 @@
-var form = document.querySelector("#form");
+var form = document.querySelector(".submit");
 
 function results(e) {
     const day = document.getElementById("day").value,
@@ -7,62 +7,119 @@ function results(e) {
     today = new Date(), // gets current date
     thisYear = today.getFullYear(), // gets current year
     thisMonth = today.getMonth() + 1, // gets current month
-    thisDay = today.getDate(); // gets current day
+    thisDay = today.getDate(), // gets current day
+    yearText = document.querySelector(".yearResult").outerHTML,
+    monthText = document.querySelector(".monthResult").outerHTML,
+    dayText = document.querySelector(".daysResult").outerHTML;
    
     e.preventDefault(); // prevents auto submission i.e ? in the url
 
      // The logic here
 
-    var resultYear = thisYear - year;
-    var resultDay = thisDay - day;
-    if (month == thisMonth && day == thisDay && year < thisYear) {
-        document.querySelector(".monthResult").outerHTML = 0;
-        document.querySelector(".daysResult").outerHTML = resultDay;
-        document.querySelector(".yearResult").outerHTML = resultYear;
-    }
+    var resultYear = thisYear - year,
+        resultDay = thisDay - day,
+        totalDays = new Date(year, month, 0).getDate(),
+        totalMonths = 12;
 
-    else if (thisYear == year) {
-        resultYear = 0;
-        document.querySelector(".yearResult").outerHTML = resultYear;
+    // if (month == thisMonth && day == thisDay && year < thisYear) {
+    //     if (day > totalDays) {
+    //         alert('Please select a day in the month'); // returns error message
+    //     }
+    //     monthText = "0";
+    //     dayText = "0";
+    //     yearText = resultYear;
+    // }
+
+    if (thisYear == year) {
+        // let resultYear = 0;
         if (month == thisMonth) {
-            document.querySelector(".monthResult").outerHTML = 0;
-            if (day > thisDay) {
-                document.querySelector(".daysResult").outerHTML = 0;
+            monthText = "0";
+            if (day > totalDays) {
+                alert('Please select a day in the month'); // returns error message
+            }
+            else if (day > thisDay) {
+                dayText = 0; // Replace with error message
             } 
             else if (day < thisDay) {
-                document.querySelector(".daysResult").outerHTML = thisDay-day;
+                dayText = resultDay;
+                yearText = "0";
             } else {
-                document.querySelector(".daysResult").outerHTML = 0;
+                dayText = "0";
+                yearText = "0";
             }
-        } 
+        }
         else if (month < thisMonth) {
-           var beforeRMonth = thisMonth - month,
-                totalDays = new Date(year, month, 0).getDate();
-           if (day > thisDay) {
+           var resultMonth = thisMonth - month;
+            if (day > totalDays) {
+                alert('Please select a day in the month'); // returns error message and resets previous values
+            }
+           else if (day > thisDay) {
                 var beforeRDay = totalDays - day;
-                document.querySelector(".daysResult").outerHTML = beforeRDay + thisDay;
-                document.querySelector(".monthResult").outerHTML = beforeRMonth - 1;
+                dayText = (beforeRDay) + thisDay;
+                monthText = resultMonth - 1;
+                yearText = "0";
            }
            else if (day < thisDay) {
                 var beforeRDay0 = beforeRDay + thisDay;
                 if (beforeRDay0 >= 30) {
-                    document.querySelector(".daysResult").outerHTML = beforeRDay0 - 30;
-                    document.querySelector(".monthsResult").outerHTML = beforeRMonth + 1;
+                    dayText = (beforeRDay0) - 30;
+                    monthText = (resultMonth) + 1;
+                    yearText = "0";
                 } else {
-                    document.querySelector(".monthsResult").outerHTML = beforeRMonth;
-                    document.querySelector(".daysResult").outerHTML = beforeRDay0;
+                    monthText = resultMonth;
+                    dayText = beforeRDay0;
+                    yearText = "0";
                 }
-           } else {
-            document.querySelector(".monthsResult").outerHTML = beforeRMonth;
-            document.querySelector(".daysResult").outerHTML = 0;
+           }
+           else {
+                yearText = "0";
+                monthText = resultMonth;
+                dayText = "0";
            }
         }
+        else if (month > thisMonth) {
+            if (day > totalDays) {
+                alert("Please select a valid day"); // returns error message
+            }
+            alert("Please select a month in the past"); // returns error message
+        }
+
     }
     
     else if (year < thisYear) {
-
+        // if month > totalMonths returns error message
+        if (month == thisMonth) {
+            monthText = "0";
+            if (day > totalDays) {
+                alert('Please select a day in the month'); // returns error message
+            }
+            else if (day > thisDay) {
+                yearText = (resultYear) - 1;
+                monthText = (totalMonths) - 1;
+                dayText = day - thisDay;
+            } 
+            else if (day < thisDay) {
+                yearText = resultYear;
+                monthText = "0";
+                dayText = resultDay;
+            } else {
+                yearText = resultYear;
+                monthText = "0";
+                dayText = "0";
+            }
+        }
+        else if (month < thisMonth) {
+            if (day > totalDays) {
+                alert('Please select a day in the month'); // returns error message
+            }
+            else if (day > thisDay) {
+                yearText = resultYear;
+                monthText = (resultMonth) - 1;
+                dayText = beforeRDay;
+            }
+        }
     }
 
 }
 
-form.addEventListener("submit", results);
+form.addEventListener("click", results);
