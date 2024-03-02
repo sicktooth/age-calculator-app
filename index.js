@@ -26,19 +26,19 @@ function results(e) {
     if (thisYear == year) {
         // let resultYear = 0;
         if (month == thisMonth) {
-            document.querySelector(".monthResult").outerHTML = "0";
+            document.querySelector(".monthResult").textContent = "0";
             if (day > totalDays) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                document.querySelector(".daysResult").outerHTML = 0; // Replace with error message
+                document.querySelector(".daysResult").textContent = 0; // Replace with error message
             } 
             else if (day < thisDay) {
-                document.querySelector(".daysResult").outerHTML = resultDay;
-                document.querySelector(".yearResult").outerHTML = "0";
+                document.querySelector(".daysResult").textContent = resultDay;
+                document.querySelector(".yearResult").textContent = "0";
             } else {
-                document.querySelector(".daysResult").outerHTML = "0";
-                document.querySelector(".yearResult").outerHTML = "0";
+                document.querySelector(".daysResult").textContent = "0";
+                document.querySelector(".yearResult").textContent = "0";
             }
         }
         else if (month < thisMonth) {
@@ -46,25 +46,25 @@ function results(e) {
                 alert('Please select a day in the month'); // returns error message and resets previous values
             }
            else if (day > thisDay) {
-                document.querySelector(".daysResult").outerHTML = beforeRDay0;
-                document.querySelector(".monthResult").outerHTML = (resultMonth) - 1;
-                document.querySelector(".yearResult").outerHTML = "0";
+                document.querySelector(".daysResult").textContent = beforeRDay0;
+                document.querySelector(".monthResult").textContent = (resultMonth) - 1;
+                document.querySelector(".yearResult").textContent = "0";
            }
            else if (day < thisDay) {
                 if (beforeRDay0 >= 30) {
-                    document.querySelector(".daysResult").outerHTML = (beforeRDay0) - 30;
-                    document.querySelector(".monthResult").outerHTML = (resultMonth) + 1;
-                    document.querySelector(".yearResult").outerHTML = "0";
+                    document.querySelector(".daysResult").textContent = (beforeRDay0) - 30;
+                    document.querySelector(".monthResult").textContent = (resultMonth) + 1;
+                    document.querySelector(".yearResult").textContent = "0";
                 } else {
-                    document.querySelector(".monthResult").outerHTML = (resultMonth) - 1;
-                    document.querySelector(".daysResult").outerHTML = beforeRDay0;
-                    document.querySelector(".yearResult").outerHTML = "0";
+                    document.querySelector(".monthResult").textContent = (resultMonth) - 1;
+                    document.querySelector(".daysResult").textContent = beforeRDay0;
+                    document.querySelector(".yearResult").textContent = "0";
                 }
            }
            else {
-                document.querySelector(".yearResult").outerHTML = "0";
-                document.querySelector(".monthResult").outerHTML = resultMonth;
-                document.querySelector(".daysResult").outerHTML = "0";
+                document.querySelector(".yearResult").textContent = "0";
+                document.querySelector(".monthResult").textContent = resultMonth;
+                document.querySelector(".daysResult").textContent = "0";
            }
         }
         else if (month > thisMonth) {
@@ -84,18 +84,18 @@ function results(e) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                document.querySelector(".yearResult").outerHTML = (resultYear) - 1;
-                document.querySelector(".monthResult").outerHTML = (totalMonths) - 1;
-                document.querySelector(".daysResult").outerHTML = day - thisDay;
+                document.querySelector(".yearResult").textContent = (resultYear) - 1;
+                document.querySelector(".monthResult").textContent = (totalMonths) - 1;
+                document.querySelector(".daysResult").textContent = day - thisDay;
             } 
             else if (day < thisDay) {
-                document.querySelector(".yearResult").outerHTML = resultYear;
-                document.querySelector(".monthResult").outerHTML = "0";
-                document.querySelector(".daysResult").outerHTML = resultDay;
+                document.querySelector(".yearResult").textContent = resultYear;
+                document.querySelector(".monthResult").textContent = "0";
+                document.querySelector(".daysResult").textContent = resultDay;
             } else {
-                document.querySelector(".yearResult").outerHTML = resultYear;
-                document.querySelector(".monthResult").outerHTML = "0";
-                document.querySelector(".daysResult").outerHTML = "0";
+                document.querySelector(".yearResult").textContent = resultYear;
+                document.querySelector(".monthResult").textContent = "0";
+                document.querySelector(".daysResult").textContent = "0";
             }
         }
         else if (month < thisMonth) {
@@ -103,41 +103,41 @@ function results(e) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                document.querySelector(".yearResult").outerHTML = resultYear;
+                document.querySelector(".yearResult").textContent = resultYear;
                 if (beforeRDay0 >= 30) {
-                  document.querySelector(".monthResult").outerHTML = (resultMonth) + 1;  
-                  document.querySelector(".daysResult").outerHTML = (beforeRDay0) - 30;
+                  document.querySelector(".monthResult").textContent = (resultMonth) + 1;  
+                  document.querySelector(".daysResult").textContent = (beforeRDay0) - 30;
                 } else {
-                    document.querySelector(".monthResult").outerHTML = (resultMonth) - 1;  
-                    document.querySelector(".daysResult").outerHTML = beforeRDay0;
+                    document.querySelector(".monthResult").textContent = (resultMonth) - 1;  
+                    document.querySelector(".daysResult").textContent = beforeRDay0;
                 }
             }
             else if (day < thisDay) {
-                document.querySelector(".yearResult").outerHTML = resultYear;
-                document.querySelector(".monthResult").outerHTML = resultMonth;
-                document.querySelector(".daysResult").outerHTML = resultDay;
+                document.querySelector(".yearResult").textContent = resultYear;
+                document.querySelector(".monthResult").textContent = resultMonth;
+                document.querySelector(".daysResult").textContent = resultDay;
             } else {
-                document.querySelector(".yearResult").outerHTML = resultYear;
-                document.querySelector(".monthResult").outerHTML = resultMonth;
-                document.querySelector(".daysResult").outerHTML = "0";
+                document.querySelector(".yearResult").textContent = resultYear;
+                document.querySelector(".monthResult").textContent = resultMonth;
+                document.querySelector(".daysResult").textContent = "0";
             }
         } else {
             if (day > totalDays) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                document.querySelector(".yearResult").outerHTML = (resultYear) - 1;
-                document.querySelector(".monthResult").outerHTML = (totalMonths - month) + (thisMonth - 1);
-                document.querySelector(".daysResult").outerHTML = beforeRDay0;
+                document.querySelector(".yearResult").textContent = (resultYear) - 1;
+                document.querySelector(".monthResult").textContent = (totalMonths - month) + (thisMonth - 1);
+                document.querySelector(".daysResult").textContent = beforeRDay0;
             }
             else if (day < thisDay) {
-                document.querySelector(".yearResult").outerHTML = (resultYear) - 1;
-                document.querySelector(".monthResult").outerHTML = (totalMonths - month) + thisMonth;
-                document.querySelector(".daysResult").outerHTML = resultDay;
+                document.querySelector(".yearResult").textContent = (resultYear) - 1;
+                document.querySelector(".monthResult").textContent = (totalMonths - month) + thisMonth;
+                document.querySelector(".daysResult").textContent = resultDay;
             } else {
-                document.querySelector(".yearResult").outerHTML = (resultYear) - 1;
-                document.querySelector(".monthResult").outerHTML = (totalMonths - month) + thisMonth;
-                document.querySelector(".daysResult").outerHTML = "0";
+                document.querySelector(".yearResult").textContent = (resultYear) - 1;
+                document.querySelector(".monthResult").textContent = (totalMonths - month) + thisMonth;
+                document.querySelector(".daysResult").textContent = "0";
             }
         }
     } else {
