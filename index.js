@@ -19,7 +19,9 @@ function results(e) {
     resultDay = thisDay - day,
     totalDays = new Date(year, month, 0).getDate(),
     totalMonths = 12,
-    totalDaysPM = new Date(year, (month - 1), 0).getDate(); // gets total days in previous month
+    totalDaysPM = new Date(thisYear, (thisMonth - 1), 0).getDate(), // gets total days in previous month
+    beforeRDay = totalDaysPM - day,
+    beforeRDay0 = beforeRDay + thisDay;
 
     if (thisYear == year) {
         // let resultYear = 0;
@@ -44,18 +46,17 @@ function results(e) {
                 alert('Please select a day in the month'); // returns error message and resets previous values
             }
            else if (day > thisDay) {
-                document.querySelector(".daysResult").outerHTML = (beforeRDay) + thisDay;
+                document.querySelector(".daysResult").outerHTML = beforeRDay0;
                 document.querySelector(".monthResult").outerHTML = (resultMonth) - 1;
                 document.querySelector(".yearResult").outerHTML = "0";
            }
            else if (day < thisDay) {
-                var beforeRDay0 = beforeRDay + thisDay;
                 if (beforeRDay0 >= 30) {
                     document.querySelector(".daysResult").outerHTML = (beforeRDay0) - 30;
                     document.querySelector(".monthResult").outerHTML = (resultMonth) + 1;
                     document.querySelector(".yearResult").outerHTML = "0";
                 } else {
-                    document.querySelector(".monthResult").outerHTML = resultMonth;
+                    document.querySelector(".monthResult").outerHTML = (resultMonth) - 1;
                     document.querySelector(".daysResult").outerHTML = beforeRDay0;
                     document.querySelector(".yearResult").outerHTML = "0";
                 }
@@ -103,10 +104,44 @@ function results(e) {
             }
             else if (day > thisDay) {
                 document.querySelector(".yearResult").outerHTML = resultYear;
-                document.querySelector(".monthResult").outerHTML = (resultMonth) - 1;
-                document.querySelector(".daysResult").outerHTML = beforeRDay;
+                if (beforeRDay0 >= 30) {
+                  document.querySelector(".monthResult").outerHTML = (resultMonth) + 1;  
+                  document.querySelector(".daysResult").outerHTML = (beforeRDay0) - 30;
+                } else {
+                    document.querySelector(".monthResult").outerHTML = (resultMonth) - 1;  
+                    document.querySelector(".daysResult").outerHTML = beforeRDay0;
+                }
+            }
+            else if (day < thisDay) {
+                document.querySelector(".yearResult").outerHTML = resultYear;
+                document.querySelector(".monthResult").outerHTML = resultMonth;
+                document.querySelector(".daysResult").outerHTML = resultDay;
+            } else {
+                document.querySelector(".yearResult").outerHTML = resultYear;
+                document.querySelector(".monthResult").outerHTML = resultMonth;
+                document.querySelector(".daysResult").outerHTML = "0";
+            }
+        } else {
+            if (day > totalDays) {
+                alert('Please select a day in the month'); // returns error message
+            }
+            else if (day > thisDay) {
+                document.querySelector(".yearResult").outerHTML = (resultYear) - 1;
+                document.querySelector(".monthResult").outerHTML = (totalMonths - month) + (thisMonth - 1);
+                document.querySelector(".daysResult").outerHTML = beforeRDay0;
+            }
+            else if (day < thisDay) {
+                document.querySelector(".yearResult").outerHTML = (resultYear) - 1;
+                document.querySelector(".monthResult").outerHTML = (totalMonths - month) + thisMonth;
+                document.querySelector(".daysResult").outerHTML = resultDay;
+            } else {
+                document.querySelector(".yearResult").outerHTML = (resultYear) - 1;
+                document.querySelector(".monthResult").outerHTML = (totalMonths - month) + thisMonth;
+                document.querySelector(".daysResult").outerHTML = "0";
             }
         }
+    } else {
+        alert ("Input a year in the past!!!!!");
     }
 
 }
