@@ -1,16 +1,14 @@
-var form = document.querySelector(".submit");
+var form = document.querySelector("#form");
 
 function results(e) {
+
     const day = document.getElementById("day").value,
     month = document.getElementById("month").value,
     year = document.getElementById("year").value,
     today = new Date(), // gets current date
     thisYear = today.getFullYear(), // gets current year
     thisMonth = today.getMonth() + 1, // gets current month
-    thisDay = today.getDate(), // gets current day
-    yearText = document.querySelector(".yearResult").outerHTML,
-    monthText = document.querySelector(".monthResult").outerHTML,
-    dayText = document.querySelector(".daysResult").outerHTML;
+    thisDay = today.getDate(); // gets current day
    
     e.preventDefault(); // prevents auto submission i.e ? in the url
 
@@ -19,7 +17,14 @@ function results(e) {
     var resultYear = thisYear - year,
         resultDay = thisDay - day,
         totalDays = new Date(year, month, 0).getDate(),
-        totalMonths = 12;
+        totalMonths = 12,
+        totalDaysPM = new Date(year, (month - 1), 0).getDate(), // gets total days in previous month
+
+            // displays results
+
+        yearText = document.querySelector(".yearResult").outerHTML,
+        monthText = document.querySelector(".monthResult").outerHTML,
+        dayText = document.querySelector(".daysResult").outerHTML; 
 
     // if (month == thisMonth && day == thisDay && year < thisYear) {
     //     if (day > totalDays) {
@@ -54,16 +59,16 @@ function results(e) {
                 alert('Please select a day in the month'); // returns error message and resets previous values
             }
            else if (day > thisDay) {
-                var beforeRDay = totalDays - day;
-                dayText = (beforeRDay) + thisDay;
+                var beforeRDay = totalDaysPM - day;
+                dayText = beforeRDay + thisDay;
                 monthText = resultMonth - 1;
                 yearText = "0";
            }
            else if (day < thisDay) {
                 var beforeRDay0 = beforeRDay + thisDay;
                 if (beforeRDay0 >= 30) {
-                    dayText = (beforeRDay0) - 30;
-                    monthText = (resultMonth) + 1;
+                    dayText = beforeRDay0 - 30;
+                    monthText = resultMonth + 1;
                     yearText = "0";
                 } else {
                     monthText = resultMonth;
@@ -89,13 +94,13 @@ function results(e) {
     else if (year < thisYear) {
         // if month > totalMonths returns error message
         if (month == thisMonth) {
-            monthText = "0";
+            // monthText = "0";
             if (day > totalDays) {
                 alert('Please select a day in the month'); // returns error message
             }
             else if (day > thisDay) {
-                yearText = (resultYear) - 1;
-                monthText = (totalMonths) - 1;
+                yearText = resultYear - 1;
+                monthText = totalMonths - 1;
                 dayText = day - thisDay;
             } 
             else if (day < thisDay) {
@@ -114,7 +119,7 @@ function results(e) {
             }
             else if (day > thisDay) {
                 yearText = resultYear;
-                monthText = (resultMonth) - 1;
+                monthText = resultMonth - 1;
                 dayText = beforeRDay;
             }
         }
@@ -122,4 +127,4 @@ function results(e) {
 
 }
 
-form.addEventListener("click", results);
+form.addEventListener("submit", results);
