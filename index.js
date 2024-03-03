@@ -82,7 +82,7 @@ function results(e) {
                 document.querySelector(".daysResult").textContent = "0";
            }
         }
-        else if (month > thisMonth) {
+        else {
             if (day > totalDays) {
                 alert("Please select a valid day"); // returns error message
             }
@@ -116,7 +116,13 @@ function results(e) {
             else if (day > thisDay) {
                 document.querySelector(".yearResult").textContent = (resultYear) - 1;
                 document.querySelector(".monthResult").textContent = (totalMonths) - 1;
-                document.querySelector(".daysResult").textContent = day - thisDay;
+                let resultDayR = day - thisDay;
+                if (resultDayR = 1) {
+                    document.querySelector(".daysResult").textContent = resultDayR + 1;
+                }
+                else {
+                    document.querySelector(".daysResult").textContent = resultDayR;
+                }
             } 
             else if (day < thisDay) {
                 document.querySelector(".yearResult").textContent = resultYear;
