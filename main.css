@@ -36,6 +36,13 @@
 
 body {
     font-family: 'Poppins';
+    background-color: hsl(0, 0%, 94%);
+}
+
+section {
+  width: 50%;
+  background-color: hsl(0, 0%, 100%);
+  margin-top: 5rem;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
