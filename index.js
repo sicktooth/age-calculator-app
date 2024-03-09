@@ -23,7 +23,13 @@ function results(e) {
     beforeRDay = totalDaysPM - day,
     beforeRDay0 = beforeRDay + thisDay;
 
-    if (thisYear == year) {
+    if (year == null && month == null && day == null || year == "" && month == "" && day == "") {
+        for (var i = 0; i < 3; i++) {
+            document.querySelectorAll(".empty__string__text")[i].style.display = "block";
+        }
+        
+    }
+    else if (thisYear == year) {
         // let resultYear = 0;
         if (month > totalMonths || month <= 0) {
             if (day > totalDays) {
@@ -185,7 +191,7 @@ function results(e) {
         }
     } 
     
-    else {
+    else if (year > thisYear){
         if (month > totalMonths || month <= 0) {
             if (day > totalDays) {
                 alert('Please select a day in the month'); // returns error message

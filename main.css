@@ -42,7 +42,6 @@ body {
 section {
   width: 45%;
   background-color: hsl(0, 0%, 100%);
-  margin-top: 5rem;
   border-radius: 20px 20px 139px 20px;
   padding: 50px;
   margin:100px auto 20px auto;
@@ -68,7 +67,7 @@ input {
   padding: 15px;
   border: 1px solid hsl(0, 0%, 86%);
   border-radius: 7px;
-  margin: 0.75rem 0 1.5rem 0;
+  margin: 0.45rem 0 0.5rem 0;
 }
 ::placeholder {
   color: hsl(0, 1%, 44%);
@@ -84,33 +83,36 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
   appearance: textfield;
 }
+input:hover,
+input:focus {
+  border-color: hsl(259, 100%, 65%);
+  outline-color: hsl(259, 100%, 65%);
+  cursor: pointer;
+}
 
 .sub {
   display: flex;
 }
 
-button:before {
-  display: block;
-  content: " ";
-  height: 2px;
-  width: 100%;
-  background-color: hsl(0, 0%, 86%);
-  
-}
-
 button {
   cursor: pointer !important;
-  height: 80px;
-  width: 82px;
+  height: 86px;
+  width: 88px;
   border-radius: 50%;
   background-color: hsl(259, 100%, 65%);
   border: 0px;
   margin-left: auto;
-  /* test */
-  display: block;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-end: 0px;
+}
+.wrapper:before {
+  display: inline-block;
+  content: " ";
+  height: 2px;
+  width: 520px;
+  background-color: hsl(0, 0%, 86%);
+  vertical-align: super;
+}
+button:hover {
+  background-color: hsl(0, 0%, 8%);
 }
 
 .results {
@@ -121,4 +123,16 @@ button {
 
 .results span { 
   color: hsl(259, 100%, 65%);
+}
+/* ERROR MESSAGES */
+
+.empty__string {
+  border-color: hsl(0, 100%, 67%);
+  color: hsl(0, 100%, 67%);
+}
+.empty__string__text {
+  color: hsl(0, 100%, 67%);
+  font-size: 13px;
+  font-style: italic;
+  display: none;
 }
