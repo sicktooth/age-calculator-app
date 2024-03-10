@@ -136,3 +136,9 @@ button:hover {
   font-style: italic;
   display: none;
 }
+
+.invalid__string__day,
+.invalid__string__month,
+.invalid__string__year {
+  display: none;
+}

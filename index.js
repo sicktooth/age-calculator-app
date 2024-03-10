@@ -26,19 +26,25 @@ function results(e) {
     if (year == null && month == null && day == null || year == "" && month == "" && day == "") {
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "block";
+            document.querySelectorAll("label")[i].classList.add("empty__string");
+            document.querySelectorAll("input")[i].classList.add("empty__string");
         }
-        
     }
     else if (thisYear == year) {
+        for (var i = 0; i < 3; i++) {
+            document.querySelectorAll(".empty__string__text")[i].style.display = "none";
+            document.querySelectorAll("label")[i].classList.remove("empty__string");
+            document.querySelectorAll("input")[i].classList.remove("empty__string");
+        }
         // let resultYear = 0;
         if (month > totalMonths || month <= 0) {
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message
+                document.querySelector(".invalid__string__day").style.display = "block";
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__day").style.display = "block";
             }
-            alert('Please select a valid month'); // returns error message
+            document.querySelector(".invalid__string__month").style.display = "block";
         }
         else if (month == thisMonth) {
             document.querySelector(".monthResult").textContent = "0";
@@ -101,6 +107,11 @@ function results(e) {
     }
     
     else if (year < thisYear) {
+        for (var i = 0; i < 3; i++) {
+            document.querySelectorAll(".empty__string__text")[i].style.display = "none";
+            document.querySelectorAll("label")[i].classList.remove("empty__string");
+            document.querySelectorAll("input")[i].classList.remove("empty__string");
+        }
         // if month > totalMonths returns error message
         if (month > totalMonths || month <= 0) {
             if (day > totalDays) {
