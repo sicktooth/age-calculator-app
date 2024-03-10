@@ -55,6 +55,7 @@ function results(e) {
         }
         else if (month == thisMonth) {
             document.querySelector(".monthResult").textContent = "0";
+            document.querySelector(".invalid__string__whole").style.display = "none";
             if (day > totalDays) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
@@ -85,6 +86,7 @@ function results(e) {
             }
         }
         else if (month < thisMonth) {
+            document.querySelector(".invalid__string__whole").style.display = "none";
             if (day > totalDays) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
@@ -177,6 +179,7 @@ function results(e) {
                 }
             }
             else if (day > thisDay) {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = (resultYear) - 1;
                 document.querySelector(".monthResult").textContent = (totalMonths) - 1;
                 let resultDayR = day - thisDay;
@@ -188,10 +191,12 @@ function results(e) {
                 }
             } 
             else if (day < thisDay) {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = resultYear;
                 document.querySelector(".monthResult").textContent = "0";
                 document.querySelector(".daysResult").textContent = resultDay;
             } else {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = resultYear;
                 document.querySelector(".monthResult").textContent = "0";
                 document.querySelector(".daysResult").textContent = "0";
@@ -213,6 +218,7 @@ function results(e) {
                 }
             }
             else if (day > thisDay) {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = resultYear;
                 if (beforeRDay0 >= 30) {
                   document.querySelector(".monthResult").textContent = (resultMonth) + 1;  
@@ -223,10 +229,12 @@ function results(e) {
                 }
             }
             else if (day < thisDay) {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = resultYear;
                 document.querySelector(".monthResult").textContent = resultMonth;
                 document.querySelector(".daysResult").textContent = resultDay;
             } else {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = resultYear;
                 document.querySelector(".monthResult").textContent = resultMonth;
                 document.querySelector(".daysResult").textContent = "0";
@@ -248,15 +256,18 @@ function results(e) {
                 }
             }
             else if (day > thisDay) {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = (resultYear) - 1;
                 document.querySelector(".monthResult").textContent = (totalMonths - month) + (thisMonth - 1);
                 document.querySelector(".daysResult").textContent = beforeRDay0;
             }
             else if (day < thisDay) {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = (resultYear) - 1;
                 document.querySelector(".monthResult").textContent = (totalMonths - month) + thisMonth;
                 document.querySelector(".daysResult").textContent = resultDay;
             } else {
+                document.querySelector(".invalid__string__whole").style.display = "none";
                 document.querySelector(".yearResult").textContent = (resultYear) - 1;
                 document.querySelector(".monthResult").textContent = (totalMonths - month) + thisMonth;
                 document.querySelector(".daysResult").textContent = "0";
