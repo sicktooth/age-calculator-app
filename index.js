@@ -26,36 +26,55 @@ function results(e) {
     if (year == null && month == null && day == null || year == "" && month == "" && day == "") {
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "block";
-            document.querySelectorAll("label")[i].classList.add("empty__string");
-            document.querySelectorAll("input")[i].classList.add("empty__string");
+            document.querySelectorAll("label")[i].classList.add("empty__string-label");
+            document.querySelectorAll("input")[i].classList.add("empty__string-input");
         }
     }
     else if (thisYear == year) {
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "none";
-            document.querySelectorAll("label")[i].classList.remove("empty__string");
-            document.querySelectorAll("input")[i].classList.remove("empty__string");
+            document.querySelectorAll("label")[i].classList.remove("empty__string-label");
+            document.querySelectorAll("input")[i].classList.remove("empty__string-input");
         }
+        document.querySelector(".invalid__string__day").style.display = "none";
+        document.querySelector(".invalid__string__month").style.display = "none";
+        document.querySelector(".invalid__string__year").style.display = "none";
         // let resultYear = 0;
         if (month > totalMonths || month <= 0) {
             if (day > totalDays) {
-                document.querySelector(".invalid__string__day").style.display = "block";
+                document.querySelector(".invalid__string__whole").style.display = "block";
             }
             else if (day <= 0) {
-                document.querySelector(".invalid__string__day").style.display = "block";
+                document.querySelector(".invalid__string__whole").style.display = "block";
             }
-            document.querySelector(".invalid__string__month").style.display = "block";
+            for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+            }
+            document.querySelector(".invalid__string__whole").style.display = "block";
         }
         else if (month == thisMonth) {
             document.querySelector(".monthResult").textContent = "0";
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day > thisDay) {
-                document.querySelector(".daysResult").textContent = 0; // Replace with error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             } 
             else if (day < thisDay) {
                 document.querySelector(".daysResult").textContent = resultDay;
@@ -67,10 +86,18 @@ function results(e) {
         }
         else if (month < thisMonth) {
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message and resets previous values
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
            else if (day > thisDay) {
                 document.querySelector(".daysResult").textContent = beforeRDay0;
@@ -96,12 +123,16 @@ function results(e) {
         }
         else {
             if (day > totalDays) {
-                alert("Please select a valid day"); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
             }
-            alert("Please select a month in the past"); // returns error message
+            for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+            }
+            document.querySelector(".invalid__string__whole").style.display = "block";
         }
 
     }
@@ -109,26 +140,41 @@ function results(e) {
     else if (year < thisYear) {
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "none";
-            document.querySelectorAll("label")[i].classList.remove("empty__string");
-            document.querySelectorAll("input")[i].classList.remove("empty__string");
+            document.querySelectorAll("label")[i].classList.remove("empty__string-label");
+            document.querySelectorAll("input")[i].classList.remove("empty__string-input");
         }
+        document.querySelector(".invalid__string__day").style.display = "none";
+        document.querySelector(".invalid__string__month").style.display = "none";
+        document.querySelector(".invalid__string__year").style.display = "none";
         // if month > totalMonths returns error message
         if (month > totalMonths || month <= 0) {
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
             }
-            alert('Please select a valid month'); // returns error message
+            for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+            }
+            document.querySelector(".invalid__string__whole").style.display = "block";
         }
         else if (month == thisMonth) {
             // monthText = "0";
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day > thisDay) {
                 document.querySelector(".yearResult").textContent = (resultYear) - 1;
@@ -153,10 +199,18 @@ function results(e) {
         }
         else if (month < thisMonth) {
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day > thisDay) {
                 document.querySelector(".yearResult").textContent = resultYear;
@@ -180,10 +234,18 @@ function results(e) {
         } 
         else {
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__whole").style.display = "block";
+                for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+                }
             }
             else if (day > thisDay) {
                 document.querySelector(".yearResult").textContent = (resultYear) - 1;
@@ -205,14 +267,18 @@ function results(e) {
     else if (year > thisYear){
         if (month > totalMonths || month <= 0) {
             if (day > totalDays) {
-                alert('Please select a day in the month'); // returns error message
+                document.querySelector(".invalid__string__day").style.display = "block";
             }
             else if (day <= 0) {
-                alert('Please select a valid day in the month'); // returns error message
+                document.querySelector(".invalid__string__day").style.display = "block";
             }
-            alert('Please select a valid month'); // returns error message
+            document.querySelector(".invalid__string__month").style.display = "block";
+            for (var i = 0; i < 3; i++) {
+                document.querySelectorAll("label")[i].classList.add("empty__string-label");
+                document.querySelectorAll("input")[i].classList.add("empty__string-input");
+            }
         }
-        alert ("Input a year in the past!!!!!");
+        document.querySelector(".invalid__string__year").style.display = "block";
     }
 
 }

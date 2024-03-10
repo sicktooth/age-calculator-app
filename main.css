@@ -126,19 +126,24 @@ button:hover {
 }
 /* ERROR MESSAGES */
 
-.empty__string {
+.empty__string-input {
   border-color: hsl(0, 100%, 67%);
+}
+.empty__string-label {
   color: hsl(0, 100%, 67%);
 }
-.empty__string__text {
-  color: hsl(0, 100%, 67%);
-  font-size: 13px;
-  font-style: italic;
-  display: none;
+.empty__string-input:hover,
+.empty__string-input:focus {
+  border-color: hsl(0, 100%, 67%);
+  outline-color: hsl(0, 100%, 67%);
 }
-
+.empty__string__text,
+.invalid__string__whole,
 .invalid__string__day,
 .invalid__string__month,
 .invalid__string__year {
+  color: hsl(0, 100%, 67%);
+  font-size: 13px;
+  font-style: italic;
   display: none;
 }
