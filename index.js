@@ -78,7 +78,9 @@ function results(e) {
                 }
             } 
             else if (day < thisDay) {
-                document.querySelector(".daysResult").textContent = resultDay;
+                const dayR = document.querySelector(".daysResult");
+                dayR.dataset.count = resultDay;
+                updateDisplay();
                 document.querySelector(".yearResult").textContent = "0";
             } else {
                 document.querySelector(".daysResult").textContent = "0";
@@ -292,6 +294,27 @@ function results(e) {
         document.querySelector(".invalid__string__year").style.display = "block";
     }
 
+    function updateDisplay(){
+        const counters = document.querySelectorAll(".counter");
+        counters.forEach(function (counter) {
+            let initial_count = 0;
+            const final_count = counter.dataset.count;
+
+            const counting = setInterval(updateCounting, 1);
+
+            function updateCounting(){
+                initial_count++;
+                counter.innerText = initial_count;
+            }
+
+            if (initial_count >= final_count) {
+                clearInterval(counting);
+            }
+        });
+    }
+    
 }
+
+//stopped at setting the animation if same month and year but older day
 
 form.addEventListener("submit", results);
