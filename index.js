@@ -21,7 +21,10 @@ function results(e) {
     totalMonths = 12,
     totalDaysPM = new Date(thisYear, (thisMonth - 1), 0).getDate(), // gets total days in previous month
     beforeRDay = totalDaysPM - day,
-    beforeRDay0 = beforeRDay + thisDay;
+    beforeRDay0 = beforeRDay + thisDay,
+    dayR = document.querySelector(".daysResult"),
+    monthR = document.querySelector(".monthResult"),
+    yearR = document.querySelector(".yearResult");
 
     if (year == null && month == null && day == null || year == "" && month == "" && day == "") {
         for (var i = 0; i < 3; i++) {
@@ -54,7 +57,7 @@ function results(e) {
             document.querySelector(".invalid__string__whole").style.display = "block";
         }
         else if (month == thisMonth) {
-            document.querySelector(".monthResult").textContent = "0";
+            monthR.innerText = 0;
             document.querySelector(".invalid__string__whole").style.display = "none";
             if (day > totalDays) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
@@ -78,13 +81,13 @@ function results(e) {
                 }
             } 
             else if (day < thisDay) {
-                const dayR = document.querySelector(".daysResult");
-                dayR.dataset.count = resultDay;
-                updateDisplay();
-                document.querySelector(".yearResult").textContent = "0";
+                dayR.innerText = resultDay;
+                yearR.innerText = 0;
+                // updateDisplay();
+                // console.log(dayR.dataset);
             } else {
-                document.querySelector(".daysResult").textContent = "0";
-                document.querySelector(".yearResult").textContent = "0";
+                dayR.textContent = "0";
+                yearR.textContent = "0";
             }
         }
         else if (month < thisMonth) {
@@ -104,25 +107,25 @@ function results(e) {
                 }
             }
            else if (day > thisDay) {
-                document.querySelector(".daysResult").textContent = beforeRDay0;
-                document.querySelector(".monthResult").textContent = (resultMonth) - 1;
-                document.querySelector(".yearResult").textContent = "0";
+                dayR.textContent = beforeRDay0;
+                monthR.textContent = (resultMonth) - 1;
+                yearR.textContent = "0";
            }
            else if (day < thisDay) {
                 if (beforeRDay0 >= 30) {
-                    document.querySelector(".daysResult").textContent = (beforeRDay0) - 30;
-                    document.querySelector(".monthResult").textContent = (resultMonth) + 1;
-                    document.querySelector(".yearResult").textContent = "0";
+                    dayR.textContent = (beforeRDay0) - 30;
+                    monthR.textContent = (resultMonth) + 1;
+                    yearR.textContent = "0";
                 } else {
-                    document.querySelector(".monthResult").textContent = (resultMonth) - 1;
-                    document.querySelector(".daysResult").textContent = beforeRDay0;
-                    document.querySelector(".yearResult").textContent = "0";
+                    monthR.textContent = (resultMonth) - 1;
+                    dayR.textContent = beforeRDay0;
+                    yearR.textContent = "0";
                 }
            }
            else {
-                document.querySelector(".yearResult").textContent = "0";
-                document.querySelector(".monthResult").textContent = resultMonth;
-                document.querySelector(".daysResult").textContent = "0";
+                yearR.textContent = "0";
+                monthR.textContent = resultMonth;
+                dayR.textContent = "0";
            }
         }
         else {
@@ -182,26 +185,26 @@ function results(e) {
             }
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = (resultYear) - 1;
-                document.querySelector(".monthResult").textContent = (totalMonths) - 1;
+                yearR.textContent = (resultYear) - 1;
+                monthR.textContent = (totalMonths) - 1;
                 let resultDayR = day - thisDay;
                 if (resultDayR = 1) {
-                    document.querySelector(".daysResult").textContent = resultDayR + 1;
+                    dayR.textContent = resultDayR + 1;
                 }
                 else {
-                    document.querySelector(".daysResult").textContent = resultDayR;
+                    dayR.textContent = resultDayR;
                 }
             } 
             else if (day < thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = resultYear;
-                document.querySelector(".monthResult").textContent = "0";
-                document.querySelector(".daysResult").textContent = resultDay;
+                yearR.textContent = resultYear;
+                monthR.textContent = "0";
+                dayR.textContent = resultDay;
             } else {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = resultYear;
-                document.querySelector(".monthResult").textContent = "0";
-                document.querySelector(".daysResult").textContent = "0";
+                yearR.textContent = resultYear;
+                monthR.textContent = "0";
+                dayR.textContent = "0";
             }
         }
         else if (month < thisMonth) {
@@ -221,25 +224,25 @@ function results(e) {
             }
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = resultYear;
+                yearR.textContent = resultYear;
                 if (beforeRDay0 >= 30) {
-                  document.querySelector(".monthResult").textContent = (resultMonth) + 1;  
-                  document.querySelector(".daysResult").textContent = (beforeRDay0) - 30;
+                  monthR.textContent = (resultMonth) + 1;  
+                  dayR.textContent = (beforeRDay0) - 30;
                 } else {
-                    document.querySelector(".monthResult").textContent = (resultMonth) - 1;  
-                    document.querySelector(".daysResult").textContent = beforeRDay0;
+                    monthR.textContent = (resultMonth) - 1;  
+                    dayR.textContent = beforeRDay0;
                 }
             }
             else if (day < thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = resultYear;
-                document.querySelector(".monthResult").textContent = resultMonth;
-                document.querySelector(".daysResult").textContent = resultDay;
+                yearR.textContent = resultYear;
+                monthR.textContent = resultMonth;
+                dayR.textContent = resultDay;
             } else {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = resultYear;
-                document.querySelector(".monthResult").textContent = resultMonth;
-                document.querySelector(".daysResult").textContent = "0";
+                yearR.textContent = resultYear;
+                monthR.textContent = resultMonth;
+                dayR.textContent = "0";
             }
         } 
         else {
@@ -259,20 +262,20 @@ function results(e) {
             }
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = (resultYear) - 1;
-                document.querySelector(".monthResult").textContent = (totalMonths - month) + (thisMonth - 1);
-                document.querySelector(".daysResult").textContent = beforeRDay0;
+                yearR.textContent = (resultYear) - 1;
+                monthR.textContent = (totalMonths - month) + (thisMonth - 1);
+                dayR.textContent = beforeRDay0;
             }
             else if (day < thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = (resultYear) - 1;
-                document.querySelector(".monthResult").textContent = (totalMonths - month) + thisMonth;
-                document.querySelector(".daysResult").textContent = resultDay;
+                yearR.textContent = (resultYear) - 1;
+                monthR.textContent = (totalMonths - month) + thisMonth;
+                dayR.textContent = resultDay;
             } else {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                document.querySelector(".yearResult").textContent = (resultYear) - 1;
-                document.querySelector(".monthResult").textContent = (totalMonths - month) + thisMonth;
-                document.querySelector(".daysResult").textContent = "0";
+                yearR.textContent = (resultYear) - 1;
+                monthR.textContent = (totalMonths - month) + thisMonth;
+                dayR.textContent = "0";
             }
         }
     } 
@@ -300,10 +303,11 @@ function results(e) {
             let initial_count = 0;
             const final_count = counter.dataset.count;
 
-            const counting = setInterval(updateCounting, 1);
+            const counting = setInterval(updateCounting, 50);
 
             function updateCounting(){
                 initial_count++;
+                
                 counter.innerText = initial_count;
             }
 

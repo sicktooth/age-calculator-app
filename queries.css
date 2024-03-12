@@ -37,9 +37,19 @@
     .row {
         grid-template-columns: repeat(3, 13.733vw);
     }
+    input {
+        padding: 13px; font-size: 26px;
+    }
 
     .wrapper:before {
         width: 411px;
+    }
+    button {
+        height: 80px; width: 82px;
+    }
+
+    .results {
+        font-size: 70px;
     }
 }
 @media only screen and (max-width: 896px) {
@@ -52,7 +62,7 @@
     }
 
     .wrapper:before {
-        width: 378px;
+        width: 368px;
     }
 }
 @media only screen and (max-width: 768px){
@@ -65,6 +75,12 @@
     }
 
     .wrapper:before {
-        width: 333px;
+        width: 335px;
     }
+    button {
+        height: 75px; width: 77px;
+    }
+}
+@media only screen and (max-width: 597px){
+
 }
