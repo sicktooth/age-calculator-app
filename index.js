@@ -32,8 +32,10 @@ function results(e) {
             document.querySelectorAll("label")[i].classList.add("empty__string-label");
             document.querySelectorAll("input")[i].classList.add("empty__string-input");
         }
+        refresh();
     }
     else if (thisYear == year) {
+        yearR.dataset.count = 0;
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "none";
             document.querySelectorAll("label")[i].classList.remove("empty__string-label");
@@ -55,9 +57,10 @@ function results(e) {
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
             document.querySelector(".invalid__string__whole").style.display = "block";
+            refresh();
         }
         else if (month == thisMonth) {
-            monthR.innerText = 0;
+            monthR.dataset.count = 0;
             document.querySelector(".invalid__string__whole").style.display = "none";
             if (day > totalDays) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
@@ -65,6 +68,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
@@ -72,6 +76,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
@@ -79,15 +84,15 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             } 
             else if (day < thisDay) {
-                dayR.innerText = resultDay;
-                yearR.innerText = 0;
-                // updateDisplay();
+                dayR.dataset.count = resultDay;
+                updateDisplay();
                 // console.log(dayR.dataset);
             } else {
-                dayR.textContent = "0";
-                yearR.textContent = "0";
+                dayR.dataset.count = 0;
+                updateDisplay();
             }
         }
         else if (month < thisMonth) {
@@ -107,25 +112,25 @@ function results(e) {
                 }
             }
            else if (day > thisDay) {
-                dayR.textContent = beforeRDay0;
-                monthR.textContent = (resultMonth) - 1;
-                yearR.textContent = "0";
+                dayR.dataset.count = beforeRDay0;
+                monthR.dataset.count = (resultMonth) - 1;
+                updateDisplay();
            }
            else if (day < thisDay) {
                 if (beforeRDay0 >= 30) {
-                    dayR.textContent = (beforeRDay0) - 30;
-                    monthR.textContent = (resultMonth) + 1;
-                    yearR.textContent = "0";
+                    dayR.dataset.count = (beforeRDay0) - 30;
+                    monthR.dataset.count = (resultMonth) + 1;
+                    updateDisplay();
                 } else {
-                    monthR.textContent = (resultMonth) - 1;
-                    dayR.textContent = beforeRDay0;
-                    yearR.textContent = "0";
+                    monthR.dataset.count = (resultMonth) - 1;
+                    dayR.dataset.count = beforeRDay0;
+                    updateDisplay();
                 }
            }
            else {
-                yearR.textContent = "0";
-                monthR.textContent = resultMonth;
-                dayR.textContent = "0";
+                monthR.dataset.count = resultMonth;
+                dayR.dataset.count = 0;
+                updateDisplay();
            }
         }
         else {
@@ -166,6 +171,7 @@ function results(e) {
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
             document.querySelector(".invalid__string__whole").style.display = "block";
+            refresh();
         }
         else if (month == thisMonth) {
             // monthText = "0";
@@ -175,6 +181,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
@@ -182,29 +189,33 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = (resultYear) - 1;
-                monthR.textContent = (totalMonths) - 1;
+                yearR.dataset.count = (resultYear) - 1;
+                monthR.dataset.count = (totalMonths) - 1;
                 let resultDayR = day - thisDay;
                 if (resultDayR = 1) {
-                    dayR.textContent = resultDayR + 1;
+                    dayR.dataset.count = resultDayR + 1;
                 }
                 else {
-                    dayR.textContent = resultDayR;
+                    dayR.dataset.count = resultDayR;
                 }
+                updateDisplay();
             } 
             else if (day < thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = resultYear;
-                monthR.textContent = "0";
-                dayR.textContent = resultDay;
+                yearR.dataset.count = resultYear;
+                monthR.dataset.count = 0;
+                dayR.dataset.count = resultDay;
+                updateDisplay();
             } else {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = resultYear;
-                monthR.textContent = "0";
-                dayR.textContent = "0";
+                yearR.dataset.count = resultYear;
+                monthR.dataset.count = 0;
+                dayR.dataset.count = 0;
+                updateDisplay();
             }
         }
         else if (month < thisMonth) {
@@ -214,6 +225,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
@@ -221,28 +233,32 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = resultYear;
+                yearR.dataset.count = resultYear;
                 if (beforeRDay0 >= 30) {
-                  monthR.textContent = (resultMonth) + 1;  
-                  dayR.textContent = (beforeRDay0) - 30;
+                  monthR.dataset.count = (resultMonth) + 1;  
+                  dayR.dataset.count = (beforeRDay0) - 30;
                 } else {
-                    monthR.textContent = (resultMonth) - 1;  
-                    dayR.textContent = beforeRDay0;
+                    monthR.dataset.count = (resultMonth) - 1;  
+                    dayR.dataset.count = beforeRDay0;
                 }
+                updateDisplay();
             }
             else if (day < thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = resultYear;
-                monthR.textContent = resultMonth;
-                dayR.textContent = resultDay;
+                yearR.dataset.count = resultYear;
+                monthR.dataset.count = resultMonth;
+                dayR.dataset.count = resultDay;
+                updateDisplay();
             } else {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = resultYear;
-                monthR.textContent = resultMonth;
-                dayR.textContent = "0";
+                yearR.dataset.count = resultYear;
+                monthR.dataset.count = resultMonth;
+                dayR.dataset.count = 0;
+                updateDisplay();
             }
         } 
         else {
@@ -252,6 +268,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
@@ -259,23 +276,27 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
+                refresh();
             }
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = (resultYear) - 1;
-                monthR.textContent = (totalMonths - month) + (thisMonth - 1);
-                dayR.textContent = beforeRDay0;
+                yearR.dataset.count = (resultYear) - 1;
+                monthR.dataset.count = (totalMonths - month) + (thisMonth - 1);
+                dayR.dataset.count = beforeRDay0;
+                updateDisplay();
             }
             else if (day < thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = (resultYear) - 1;
-                monthR.textContent = (totalMonths - month) + thisMonth;
-                dayR.textContent = resultDay;
+                yearR.dataset.count = (resultYear) - 1;
+                monthR.dataset.count = (totalMonths - month) + thisMonth;
+                dayR.dataset.count = resultDay;
+                updateDisplay();
             } else {
                 document.querySelector(".invalid__string__whole").style.display = "none";
-                yearR.textContent = (resultYear) - 1;
-                monthR.textContent = (totalMonths - month) + thisMonth;
-                dayR.textContent = "0";
+                yearR.dataset.count = (resultYear) - 1;
+                monthR.dataset.count = (totalMonths - month) + thisMonth;
+                dayR.dataset.count = 0;
+                updateDisplay();
             }
         }
     } 
@@ -294,13 +315,18 @@ function results(e) {
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
         }
+        for (var i = 0; i < 3; i++) {
+            document.querySelectorAll("label")[i].classList.add("empty__string-label");
+            document.querySelectorAll("input")[i].classList.add("empty__string-input");
+        }
         document.querySelector(".invalid__string__year").style.display = "block";
+        refresh();
     }
 
     function updateDisplay(){
         const counters = document.querySelectorAll(".counter");
         counters.forEach(function (counter) {
-            let initial_count = 0;
+            let initial_count = -1;
             const final_count = counter.dataset.count;
 
             const counting = setInterval(updateCounting, 50);
@@ -308,17 +334,18 @@ function results(e) {
             function updateCounting(){
                 initial_count++;
                 
-                counter.innerText = initial_count;
-            }
-
-            if (initial_count >= final_count) {
-                clearInterval(counting);
+                counter.innerText = initial_count; 
+                
+                if (initial_count == final_count) {
+                    clearInterval(counting);
+                }
             }
         });
     }
-    
+    function refresh() {
+        yearR.innerText = "- -";
+        monthR.innerText = "- -";
+        dayR.innerText = "- -";
+    }
 }
-
-//stopped at setting the animation if same month and year but older day
-
 form.addEventListener("submit", results);
