@@ -294,6 +294,7 @@ function results(e) {
         refresh();
     }
 
+    //Animation function
     function updateDisplay(){
         const counters = document.querySelectorAll(".counter");
         counters.forEach(function (counter) {
@@ -313,6 +314,7 @@ function results(e) {
             }
         });
     }
+    // refresh function
     function refresh() {
         yearR.innerText = "- -";
         monthR.innerText = "- -";
