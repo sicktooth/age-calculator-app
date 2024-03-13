@@ -26,6 +26,7 @@ function results(e) {
     monthR = document.querySelector(".monthResult"),
     yearR = document.querySelector(".yearResult");
 
+    //Displays error message for empty submitted fields
     if (year == null && month == null && day == null || year == "" && month == "" && day == "") {
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "block";
@@ -37,8 +38,11 @@ function results(e) {
         document.querySelector(".invalid__string__day").style.display = "none";
         refresh();
     }
+
+    //Checks if the year is equal to the current year
     else if (thisYear == year) {
-        yearR.dataset.count = 0;
+        yearR.dataset.count = 0; //if yes renders 0
+        // Removes error messages after form is entered correctly
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "none";
             document.querySelectorAll("label")[i].classList.remove("empty__string-label");
@@ -47,12 +51,9 @@ function results(e) {
         document.querySelector(".invalid__string__day").style.display = "none";
         document.querySelector(".invalid__string__month").style.display = "none";
         document.querySelector(".invalid__string__year").style.display = "none";
-        // let resultYear = 0;
+        //Checks if month number is between 1 and 12
         if (month > totalMonths || month <= 0) {
-            if (day > totalDays) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-            }
-            else if (day <= 0) {
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
             }
             for (var i = 0; i < 3; i++) {
@@ -60,12 +61,14 @@ function results(e) {
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
             document.querySelector(".invalid__string__month").style.display = "block";
-            refresh();
+            refresh(); // refreshes the results section to empty
         }
+        // Checks if month is equal to the current month
         else if (month == thisMonth) {
             monthR.dataset.count = 0;
-            document.querySelector(".invalid__string__whole").style.display = "none";
-            if (day > totalDays) {
+            document.querySelector(".invalid__string__whole").style.display = "none";//Removes error messages after form submission is correct
+            //Checks if day is between 1 and 31
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
@@ -73,14 +76,7 @@ function results(e) {
                 }
                 refresh();
             }
-            else if (day <= 0) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-                for (var i = 0; i < 3; i++) {
-                document.querySelectorAll("label")[i].classList.add("empty__string-label");
-                document.querySelectorAll("input")[i].classList.add("empty__string-input");
-                }
-                refresh();
-            }
+            // Checks if day is in the future
             else if (day > thisDay) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
@@ -89,6 +85,7 @@ function results(e) {
                 }
                 refresh();
             } 
+            //checks if day is in the past
             else if (day < thisDay) {
                 dayR.dataset.count = resultDay;
                 updateDisplay();
@@ -98,28 +95,25 @@ function results(e) {
                 updateDisplay();
             }
         }
+        //checks if month is in the past
         else if (month < thisMonth) {
-            document.querySelector(".invalid__string__whole").style.display = "none";
-            if (day > totalDays) {
+            document.querySelector(".invalid__string__whole").style.display = "none";// removes error message after correct submission
+            //Checks if day is between 1 and 31
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
                 }
             }
-            else if (day <= 0) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-                for (var i = 0; i < 3; i++) {
-                document.querySelectorAll("label")[i].classList.add("empty__string-label");
-                document.querySelectorAll("input")[i].classList.add("empty__string-input");
-                }
-            }
-           else if (day > thisDay) {
+             //checks if day is in the future
+            else if (day > thisDay) {
                 dayR.dataset.count = beforeRDay0;
                 monthR.dataset.count = (resultMonth) - 1;
                 updateDisplay();
-           }
-           else if (day < thisDay) {
+            }
+            //checks if day is in the past
+            else if (day < thisDay) {
                 if (beforeRDay0 >= 30) {
                     dayR.dataset.count = (beforeRDay0) - 30;
                     monthR.dataset.count = (resultMonth) + 1;
@@ -136,11 +130,9 @@ function results(e) {
                 updateDisplay();
            }
         }
+        // Checks if month is in the future
         else {
-            if (day > totalDays) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-            }
-            else if (day <= 0) {
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
             }
             for (var i = 0; i < 3; i++) {
@@ -148,11 +140,14 @@ function results(e) {
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
             document.querySelector(".invalid__string__year").style.display = "block";
+            refresh();
         }
 
     }
     
+    //checks if year is in the past
     else if (year < thisYear) {
+        // Removes error messages after form is entered correctly
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll(".empty__string__text")[i].style.display = "none";
             document.querySelectorAll("label")[i].classList.remove("empty__string-label");
@@ -161,12 +156,10 @@ function results(e) {
         document.querySelector(".invalid__string__day").style.display = "none";
         document.querySelector(".invalid__string__month").style.display = "none";
         document.querySelector(".invalid__string__year").style.display = "none";
-        // if month > totalMonths returns error message
+        //Checks if month number is between 1 and 12
         if (month > totalMonths || month <= 0) {
-            if (day > totalDays) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-            }
-            else if (day <= 0) {
+            // Checks if day is between 1 and 31
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
             }
             for (var i = 0; i < 3; i++) {
@@ -176,17 +169,11 @@ function results(e) {
             document.querySelector(".invalid__string__month").style.display = "block";
             refresh();
         }
+
+        // Checks if month is equal to the current month
         else if (month == thisMonth) {
-            // monthText = "0";
-            if (day > totalDays) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-                for (var i = 0; i < 3; i++) {
-                document.querySelectorAll("label")[i].classList.add("empty__string-label");
-                document.querySelectorAll("input")[i].classList.add("empty__string-input");
-                }
-                refresh();
-            }
-            else if (day <= 0) {
+            // checks if day is between 1 and 31
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
@@ -221,16 +208,9 @@ function results(e) {
                 updateDisplay();
             }
         }
+        // Checks if month is in the past
         else if (month < thisMonth) {
-            if (day > totalDays) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-                for (var i = 0; i < 3; i++) {
-                document.querySelectorAll("label")[i].classList.add("empty__string-label");
-                document.querySelectorAll("input")[i].classList.add("empty__string-input");
-                }
-                refresh();
-            }
-            else if (day <= 0) {
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
@@ -264,16 +244,9 @@ function results(e) {
                 updateDisplay();
             }
         } 
+        //checks if year is in the future
         else {
-            if (day > totalDays) {
-                document.querySelector(".invalid__string__whole").style.display = "block";
-                for (var i = 0; i < 3; i++) {
-                document.querySelectorAll("label")[i].classList.add("empty__string-label");
-                document.querySelectorAll("input")[i].classList.add("empty__string-input");
-                }
-                refresh();
-            }
-            else if (day <= 0) {
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
                 for (var i = 0; i < 3; i++) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
@@ -304,12 +277,10 @@ function results(e) {
         }
     } 
     
-    else if (year > thisYear){
+    //Checks if year is in the future
+    else {
         if (month > totalMonths || month <= 0) {
-            if (day > totalDays) {
-                document.querySelector(".invalid__string__day").style.display = "block";
-            }
-            else if (day <= 0) {
+            if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__day").style.display = "block";
             }
             document.querySelector(".invalid__string__month").style.display = "block";
@@ -329,7 +300,7 @@ function results(e) {
             let initial_count = -1;
             const final_count = counter.dataset.count;
 
-            const counting = setInterval(updateCounting, 50);
+            const counting = setInterval(updateCounting, 40);
 
             function updateCounting(){
                 initial_count++;
