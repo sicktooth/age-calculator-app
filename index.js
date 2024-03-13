@@ -32,6 +32,9 @@ function results(e) {
             document.querySelectorAll("label")[i].classList.add("empty__string-label");
             document.querySelectorAll("input")[i].classList.add("empty__string-input");
         }
+        document.querySelector(".invalid__string__year").style.display = "none";
+        document.querySelector(".invalid__string__month").style.display = "none";
+        document.querySelector(".invalid__string__day").style.display = "none";
         refresh();
     }
     else if (thisYear == year) {
@@ -56,7 +59,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
-            document.querySelector(".invalid__string__whole").style.display = "block";
+            document.querySelector(".invalid__string__month").style.display = "block";
             refresh();
         }
         else if (month == thisMonth) {
@@ -144,7 +147,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
-            document.querySelector(".invalid__string__whole").style.display = "block";
+            document.querySelector(".invalid__string__year").style.display = "block";
         }
 
     }
@@ -170,7 +173,7 @@ function results(e) {
                 document.querySelectorAll("label")[i].classList.add("empty__string-label");
                 document.querySelectorAll("input")[i].classList.add("empty__string-input");
             }
-            document.querySelector(".invalid__string__whole").style.display = "block";
+            document.querySelector(".invalid__string__month").style.display = "block";
             refresh();
         }
         else if (month == thisMonth) {
@@ -310,14 +313,11 @@ function results(e) {
                 document.querySelector(".invalid__string__day").style.display = "block";
             }
             document.querySelector(".invalid__string__month").style.display = "block";
-            for (var i = 0; i < 3; i++) {
-                document.querySelectorAll("label")[i].classList.add("empty__string-label");
-                document.querySelectorAll("input")[i].classList.add("empty__string-input");
-            }
         }
         for (var i = 0; i < 3; i++) {
             document.querySelectorAll("label")[i].classList.add("empty__string-label");
             document.querySelectorAll("input")[i].classList.add("empty__string-input");
+            document.querySelectorAll(".empty__string__text")[i].style.display = "none";
         }
         document.querySelector(".invalid__string__year").style.display = "block";
         refresh();
