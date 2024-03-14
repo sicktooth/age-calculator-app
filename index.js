@@ -244,7 +244,7 @@ function results(e) {
                 updateDisplay();
             }
         } 
-        //checks if year is in the future
+        //checks if month is in the future
         else {
             if (day > totalDays || day <= 0) {
                 document.querySelector(".invalid__string__whole").style.display = "block";
