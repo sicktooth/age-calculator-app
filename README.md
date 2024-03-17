@@ -32,7 +32,7 @@ This is a solution to the [Age calculator app challenge on Frontend Mentor](http
 
 ### Built with
 
-- Semantic HTML5 markup
+- HTML
 - CSS custom properties
 - CSS Grid
 - Desktop-first workflow
